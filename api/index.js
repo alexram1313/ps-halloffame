@@ -20,8 +20,8 @@ router.get("/results/:category", function(req, res){
             if (!err){
                 var results = {};
                 for (var key in data) {
-                    if (data.hasOwnProperty(key) && data[key] != '') {
-                        var index = data[key].trim()
+                    var index = data[key].trim()
+                    if (data.hasOwnProperty(key) && index != '') {
                         results[index] = results[index]+1 || 1;
                     }
                 }
