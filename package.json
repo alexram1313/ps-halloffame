@@ -8,6 +8,10 @@
   },
   "author": "alexram1313/Comp",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexram1313/ps-halloffame.git"
+  },
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
