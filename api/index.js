@@ -28,6 +28,18 @@ router.get("/results/:category", function(req, res){
                     }
                 }
                 res.status(200).json({results:results});
+                /*
+                    Results Structure
+                    {
+                        "results":{
+                            "nominee1":count1,
+                            "nominee2":count2,
+                            "nominee3":count3,
+                            ...,
+                            "nomineeN":countN
+                        }
+                    }
+                */
             }
             else{
                 res.status(500).json({message:err});
