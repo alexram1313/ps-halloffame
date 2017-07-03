@@ -1,0 +1,11 @@
+#footer {
+	background-color:black;
+	color:#ccc;
+	padding:25px 0px;
+	font-size:0.8em;
+	overflow:hidden;
+}
+
+#foot-links{
+    text-align:right;
+}
