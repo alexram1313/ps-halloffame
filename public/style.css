@@ -9,3 +9,26 @@
 #foot-links{
     text-align:right;
 }
+
+.navbar-inverse{
+    background-color:#a6dff8;
+    color:#ccc;
+}
+
+.navbar-inverse .navbar-brand {
+    color:#000;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #000;
+}
+
+#frontjumbo {
+    padding-top: 48px;
+    padding-bottom: 30px;
+    background-color:#43addc; 
+    color:white;
+}
+
+#page-header {
+    margin: 70px 0 20px;
+}

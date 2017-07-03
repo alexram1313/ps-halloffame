@@ -1,8 +1,9 @@
 var express = require('express');
-var engine = require('ejs-locals');
+var engine  = require('ejs-locals');
 var app     = express();
 
 var api     = require('./api');
+var db      = require('./util/dbmanage');
 
 app.engine('ejs', engine);
 app.set('views',__dirname + '/views');
@@ -25,6 +26,14 @@ app.get('/', function (req, res) {
   res.render('pages/stdpage', {
     "title": title,
     "content": content
+  });
+});
+
+app.get('/about', function (req, res) {
+  var title = "About";
+  res.render('pages/about', {
+    "title": title,
+    "total":db.getTotalCount()
   });
 });
 

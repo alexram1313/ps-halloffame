@@ -19,7 +19,61 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/">PonySquare Hall of Fame</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Vote</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">HOF Results<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Best Artist</a></li>
+                            <li><a href="#">Best Custom CSS</a></li>
+                            <li><a href="#">Best Admin</a></li>
+                            <li><a href="#">Friendlist User</a></li>
+                            <li><a href="#">Best Non-pony</a></li>
+                            <li><a href="#">Favorite Techie</a></li>
+                            <li><a href="#">Fave. Musician</a></li>
+                            <li><a href="#">Favorite Page</a></li>
+                            <li><a href="#">Fave. Forum RP</a></li>
+                            <li><a href="#">Fave. Moments</a></li>
+                            <li><a href="#">Best Hugger</a></li>
+                            <li><a href="#">Best OC</a></li>
+                            <li><a href="#">Best Roleplayer</a></li>
+                            <li><a href="#">Honorable Mentions</a></li>
+                            <li><a href="#">Misc. Remarks</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Demographics<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Country</a></li>
+                            <li><a href="#">Subpol. Division</a></li>
+                            <li><a href="#">Gender</a></li>
+                            <li><a href="#">After PonySquare</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="jumbotron text-center" style="background-color:#5697ff; color:white;">
-        <h1>PonySquare Hall of Fame</h1>
-    </div>
+
+    <% if (!title) {%>
+            <div class="jumbotron text-center" id="frontjumbo" >
+                <h2><img src="/public/images/ps-logo.png" height="80px"/><br/>Hall of Fame</h2>
+            </div>
+    <% } %>
+    
+
+<!--5697ff-->

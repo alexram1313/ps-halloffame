@@ -31,8 +31,13 @@ var retrieveData = function(callback){
     }
 }
 
+var getTotalCount = function(){
+    return Object.keys(db.get('data').value()).length;
+}
+
 module.exports = {
     ipCounted:    ipCounted,
     enterData:    enterData,
-    retrieveData: retrieveData
+    retrieveData: retrieveData,
+    getTotalCount:getTotalCount
 };
