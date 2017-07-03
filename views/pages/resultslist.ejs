@@ -1,0 +1,17 @@
+<% layout('../layouts/layout') %>
+
+<div ng-app="listApp" ng-controller="listCtrl" ng-init="setCurrCode('<%= option %>')">
+
+    <h2>Category: <%= optTitle %></h2>
+    <p><%= optDesc %></p>
+
+    <ul>
+        <li ng-repeat="(k,v) in results" >
+            <span ng-bind="k"></span>
+        </li>
+    </ul>
+
+    <p>Congratulations to all the nominees!</p>
+
+</div>
+<script src="/public/js/listNg.js"></script>

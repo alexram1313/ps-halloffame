@@ -1,1 +1,61 @@
 <% layout('../layouts/layout') %>
+
+<div ng-app="hofApp" ng-controller="hofCtrl" ng-init="setCurrCode('<%= option %>')">
+
+    <div class="row">
+        <div class='col-sm-8'>
+            <h2>Category: <%= optTitle %></h2>
+            <p><%= optDesc %></p>
+            <h2>Winner: <span data-ng-bind="winner"></span></h2>
+        </div>
+        <div class='col-sm-4' style="text-align:right;">
+            <div class="imgContainer" style="float:right;" data-ng-repeat="win in winners">
+                <img class="img-responsive img-thumbnail" data-ng-src="/public/images/winners/{{ win }}.png" algin='right' height="100px"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Graph</h3>
+            <canvas id="demoPie" width="400" height="400"></canvas>
+            <script>
+                var demoPieData = {
+                    datasets: [{
+                        data: [],
+                        backgroundColor:[]
+                    }],
+                    labels: []
+                };
+                var myPieChart = new Chart("demoPie",{
+                    type: 'pie',
+                    data: demoPieData,
+                    options: Chart.defaults.pie
+                });
+            </script>
+            
+        </div>
+        <div class="col-sm-6">
+            <h3>Data</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Entry</th>
+                            <th># of Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="kvp in tabularResults | orderBy:'-n'">
+                            <td>{{ kvp.e }}</td>
+                            <td>{{ kvp.n }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <p>Congratulations to all the nominees!</p>
+
+</div>
+
+<script src="/public/js/hofNg.js"></script>
