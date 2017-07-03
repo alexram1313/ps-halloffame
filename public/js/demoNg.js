@@ -14,13 +14,19 @@ demoApp.controller('demoCtrl', function($scope, $http) {
             .then(function success (data) {
                 // console.log(data);
                 $scope.results = data.data.results;
+                
+                //Pie chart and tabular entry processing
                 for (var key in $scope.results){
+                    //Entering data into the pie chart
                     myPieChart.data.labels.push(key);
                     myPieChart.data.datasets[0].data.push($scope.results[key]);
                     myPieChart.data.datasets[0].backgroundColor.
                                 push('rgb(' + (Math.floor(Math.random() * 256)) + 
                                         ',' + (Math.floor(Math.random() * 256)) +
                                         ',' + (Math.floor(Math.random() * 256)) + ')');
+                    //Restructuring data for tabular view
+                    //We must create a new object representing the key-value pair
+                    //for orderBy
                     $scope.tabularResults.push({
                         e:key,
                         n:$scope.results[key]
