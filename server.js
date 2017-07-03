@@ -22,10 +22,9 @@ app.use('/api', api);
 
 app.get('/', function (req, res) {
   var title = "";
-  var content = "<p>Instructions to come.</p>";
-  res.render('pages/stdpage', {
+  res.render('pages/home', {
     "title": title,
-    "content": content
+    "total":db.getTotalCount()
   });
 });
 
