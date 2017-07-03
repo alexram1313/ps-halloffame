@@ -14,16 +14,22 @@ db.defaults({
     {
         "data":{
             IP Address (timestamp for older entries):{
-                "category":"nominee"
+                "category1":"nominee1",
+                "category2":"nominee2",
+                ...,
+                "categoryN":"nomineeN"
             }
         }
     }
  */
 
+
+//IPs will be keys. Just check if the key is there
 var ipCounted = function(ip){
     return db.has('data.'+ip);
 }
 
+//First check the IP, then write to the database
 var enterData = function(ip, data, callback){
     if (!module.exports.ipCounted(ip)){
         db.set('data.' + ip, data).write();
