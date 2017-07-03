@@ -5,6 +5,8 @@ var app     = express();
 var api     = require('./api');
 var db      = require('./util/dbmanage');
 
+
+//Housekeeping stuff
 app.engine('ejs', engine);
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
@@ -17,6 +19,8 @@ process.on('uncaughtException', function (err) {
   console.log("Error: " + err);
 });
 
+
+//Express routing
 
 app.use('/api', api);
 
@@ -43,6 +47,8 @@ app.get('/vote', function (req, res) {
   });
 });
 
+
+//Hardcoded strings :(
 const hofOptionTitles = {
     'artist':{title:'Best Artist', desc:'This category recognizes the PonySquare user that also happened to be the best artist.'},
     'css':{title:'Best CSS', desc:'This category recognizes the PonySquare user with the best mix of design and technical knowledge applied to their profile.'},
@@ -105,7 +111,7 @@ app.get('/demo/:option', function (req, res) {
     }
 });
 
-
+//Start server
 var server = app.listen(process.env.PORT || 8080, function () {
     var host = server.address().address
     var port = server.address().port

@@ -19,18 +19,23 @@ demoApp.controller('hofCtrl', function($scope, $http) {
                 var currMax = 0;
                 $scope.winners = [];
 
+                //Pie Chart Processing, Winner Determination, Image Src getting
                 for (var key in $scope.results){
+                    //Enter data to pie chart
                     myPieChart.data.labels.push(key);
                     myPieChart.data.datasets[0].data.push($scope.results[key]);
                     myPieChart.data.datasets[0].backgroundColor.
                                 push('rgb(' + (Math.floor(Math.random() * 256)) + 
                                         ',' + (Math.floor(Math.random() * 256)) +
                                         ',' + (Math.floor(Math.random() * 256)) + ')');
+
+                    //Enter Data for table beside the pie chart
                     $scope.tabularResults.push({
                         e:key,
                         n:$scope.results[key]
                     });
 
+                    //Determining the winner(s)
                     if (($scope.results[key] > 1)){
                         if ($scope.results[key] > currMax){
                             $scope.winner = key;
