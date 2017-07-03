@@ -36,6 +36,30 @@ app.get('/about', function (req, res) {
   });
 });
 
+app.get('/vote', function (req, res) {
+  var title = "Vote";
+  res.render('pages/vote', {
+    "title": title
+  });
+});
+
+app.get('/results/:option', function (req, res) {
+  var title = "Results";
+  res.render('pages/results', {
+    "title": title,
+    "option":req.params.option
+  });
+});
+
+
+app.get('/demo/:option', function (req, res) {
+  var title = "Demographics";
+  res.render('pages/demo', {
+    "title": title,
+    "option":req.params.option
+  });
+});
+
 
 var server = app.listen(process.env.PORT || 8080, function () {
     var host = server.address().address

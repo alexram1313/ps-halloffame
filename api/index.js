@@ -12,7 +12,7 @@ var db = require('../util/dbmanage')
 
 const validCategories = ['artist','css','admin','friendliest','nonpony','techie',
                         'musician','page','forum','moment','hugger','oc','roleplayer',
-                        'honorable','country', 'subpol', 'gender','nextsite','remarks'];
+                        'mentions','country', 'subpol', 'gender','nextsite','remarks'];
 
 router.get("/results/:category", function(req, res){
     if (validCategories.indexOf(req.params.category) != -1){
