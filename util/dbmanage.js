@@ -8,6 +8,18 @@ db.defaults({
     data:{}
 }).write()
 
+
+/*
+    Database Structure
+    {
+        "data":{
+            IP Address (timestamp for older entries):{
+                "category":"nominee"
+            }
+        }
+    }
+ */
+
 var ipCounted = function(ip){
     return db.has('data.'+ip);
 }
