@@ -20,8 +20,8 @@ router.get("/results/:category", function(req, res){
             if (!err){
                 var results = {};
                 for (var key in data) {
-                    var index = data[key].trim()
-                    if (data.hasOwnProperty(key) && index != '') {
+                    if (data[key].hasOwnProperty(req.params.category)) {
+                        var index = data[key][req.params.category];
                         results[index] = results[index]+1 || 1;
                     }
                 }
@@ -29,6 +29,7 @@ router.get("/results/:category", function(req, res){
             }
             else{
                 res.status(500).json({message:err});
+                console.log(err);
             }
         });
     } else {

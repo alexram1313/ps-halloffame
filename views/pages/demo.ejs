@@ -1,1 +1,77 @@
 <% layout('../layouts/layout') %>
+
+<div ng-app="demoApp" ng-controller="demoCtrl">
+
+    <h2>Category: <span data-ng-bind="currTitle"></span></h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Graph</h3>
+            <canvas id="demoPie" width="400" height="400"></canvas>
+            <script>
+                var demoPieData = {
+                    datasets: [{
+                        data: [],
+                        backgroundColor:[]
+                    }],
+                    labels: []
+                };
+                var myPieChart = new Chart("demoPie",{
+                    type: 'pie',
+                    data: demoPieData,
+                    options: Chart.defaults.pie
+                });
+            </script>
+        </div>
+        <div class="col-sm-6">
+            <h3>Data</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Entry</th>
+                            <th># of Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="kvp in tabularResults | orderBy:'-n'">
+                            <td>{{ kvp.e }}</td>
+                            <td>{{ kvp.n }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var demoApp = angular.module('demoApp', []);
+    demoApp.controller('demoCtrl', function($scope, $http) {
+        $scope.currCode  = '<%= option %>';
+        $scope.currTitle = '<%= optTitle %>';
+        $scope.results = {};
+        $scope.tabularResults = [];
+
+        $http.get('/api/results/'+$scope.currCode)
+            .then(function success (data) {
+                // console.log(data);
+                $scope.results = data.data.results;
+                for (var key in $scope.results){
+                    myPieChart.data.labels.push(key);
+                    myPieChart.data.datasets[0].data.push($scope.results[key]);
+                    myPieChart.data.datasets[0].backgroundColor.
+                                push('rgb(' + (Math.floor(Math.random() * 256)) + 
+                                        ',' + (Math.floor(Math.random() * 256)) +
+                                        ',' + (Math.floor(Math.random() * 256)) + ')');
+                    $scope.tabularResults.push({
+                        e:key,
+                        n:$scope.results[key]
+                    });
+                }
+                myPieChart.update();
+                // console.log(myPieChart.data);
+            }, function error (data) {
+                console.log('Error:', data);
+            });
+    });
+</script>

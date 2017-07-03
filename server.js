@@ -51,13 +51,29 @@ app.get('/results/:option', function (req, res) {
   });
 });
 
+const demoOptionTitles = {
+    'country' :'Country',
+    'subpol'  :'Subpolitical Division (State/Province/County/etc)',
+    'gender'  :'Gender',
+    'nextsite':'Site after PonySquare'
+}
 
 app.get('/demo/:option', function (req, res) {
-  var title = "Demographics";
-  res.render('pages/demo', {
-    "title": title,
-    "option":req.params.option
-  });
+    if (demoOptionTitles.hasOwnProperty(req.params.option)){
+        var title = "Demographics";
+        res.render('pages/demo', {
+            "title": title,
+            "option":req.params.option,
+            "optTitle":demoOptionTitles[req.params.option]
+        });
+    }
+    else{
+        var title = "Error 400 - Bad Request";
+        res.status(400).render('pages/stdpage', {
+            "title": title,
+            "content":"Please check the URL for a valid demographics option."
+        });
+    }
 });
 
 
