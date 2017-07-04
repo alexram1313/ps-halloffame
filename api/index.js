@@ -42,12 +42,12 @@ router.get("/results/:category", function(req, res){
                 */
             }
             else{
-                res.status(500).json({message:err});
+                res.status(500).json({err:err});
                 console.log(err);
             }
         });
     } else {
-        res.status(400).json({message:"Invalid category"});
+        res.status(400).json({err:"Invalid category"});
     }
 });
 
@@ -55,14 +55,28 @@ router.post("/votes", function(req, res){
     var requestIP = req.connection.remoteAddress;
     var entry     = req.body.entry;
 
+    //Check if it's obvious someone is voting for themselves.
+    //Algorithm goes here: Difference between length of values and unique values >= threshold
+    const values = Object.keys(entry).map(function(key){
+        return entry[key];
+    });
+    const threshold = 5;
+    var uniqueValues = new Set(values);
+
+    if (values.length - uniqueValues.size >= threshold){
+        res.status(400).json({err: "Voting for self"});
+        return;
+    }
+    
+
     //We must check the IP address first (it's done in db.enterData)
     //Then if a new IP address is used, count the vote and send 200.
     //Otherwise, send 400.
-    db.enterData(requestIP,entry, function(success, err){
+    db.enterData(requestIP, entry, function(success, err){
         if (success){
             res.status(200).json({message: "success"});
         } else {
-            res.status(400).json({message: err});
+            res.status(400).json({err: err});
         }
     });
 });

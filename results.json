@@ -928,6 +928,13 @@
       "country": "United States",
       "gender": "Male",
       "nextsite": "Not sure yet"
+    },
+    "::1": {
+      "artist": "Neon Flare",
+      "css": "Silk Ribbon",
+      "admin": "Luna",
+      "friendliest": "Nawa",
+      "nonpony": "Lockheed"
     }
   }
 }

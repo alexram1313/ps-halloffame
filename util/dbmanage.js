@@ -6,7 +6,7 @@ var db = low('./results.json', {
 
 db.defaults({
     data:{}
-}).write()
+}).write();
 
 
 /*
@@ -26,7 +26,7 @@ db.defaults({
 
 //IPs will be keys. Just check if the key is there
 var ipCounted = function(ip){
-    return db.has('data.'+ip);
+    return db.has('data.'+ip).value();
 }
 
 //First check the IP, then write to the database
