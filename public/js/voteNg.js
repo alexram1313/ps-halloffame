@@ -18,7 +18,7 @@ voteApp.controller('voteApp', function($scope, $http) {
         var params = {entry:{}}
         for (var cat of categories){
             if ($scope[cat] != ''){
-                params.entry[cat] = $scope[cat];
+                params.entry[cat] = $scope[cat].trim();
             }
         }
 
