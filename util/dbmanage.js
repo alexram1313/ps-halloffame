@@ -110,7 +110,7 @@ var retrieveData = function(callback){
 }
 
 var getTotalCount = function(callback){
-     Vote.find({ip:ip}, function(err, docs){
+     Vote.find(function(err, docs){
         callback(docs.length);
     });
 }
