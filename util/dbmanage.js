@@ -4,16 +4,6 @@ var uristring =
   process.env.MONGODB_URI || 
   'mongodb://localhost/HelloMongoose';
 
-// var low = require('lowdb');
-
-// var db = low('./results.json', {
-//     storage: require('lowdb/lib/storages/file-async')
-// });
-
-// db.defaults({
-//     data:{}
-// }).write();
-
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
@@ -30,15 +20,32 @@ mongoose.connect(uristring, function (err, res) {
     MongoDB Database Structure
     [
         {
-            "ip": IP Address (timestamp for older entries)
-            "votes":{
-                "category1":"nominee1",
-                "category2":"nominee2",
+            "ip1": IP Address (timestamp for older entries)
+            "votes1":{
+                "category11":"nominee11",
+                "category12":"nominee12",
                 ...,
-                "categoryN":"nomineeN"
+                "category1M":"nominee1M"
             }
-            
-            
+        },
+        {
+            "ip2": IP Address (timestamp for older entries)
+            "votes2":{
+                "category21":"nominee21",
+                "category22":"nominee22",
+                ...,
+                "category2M":"nominee2M"
+            }
+        },
+        ...,
+        {
+            "ipN": IP Address (timestamp for older entries)
+            "votesN":{
+                "categoryN1":"nomineeN1",
+                "categoryN2":"nomineeN2",
+                ...,
+                "categoryNM":"nomineeNM"
+            }
         }
     ]
  */
@@ -52,9 +59,10 @@ var voteSchema = mongoose.Schema({
 var Vote = mongoose.model('Vote', voteSchema);
 
 
-//IPs will be keys. Just check if the key is there
+//IPs will be in the "ip" property of a Vote document
+//Older votes may actually have a timestamp in place
+//due to legacy Google Forms counting.
 var ipCounted = function(ip, callback){
-    // return db.has('data.'+ip).value();
     Vote.find({ip:ip}, function(err, docs){
         if (docs.length){
             callback(true);
@@ -67,11 +75,11 @@ var ipCounted = function(ip, callback){
 
 //First check the IP, then write to the database
 var enterData = function(ip, data, callback){
-
     ipCounted(ip, function(counted){
         if (counted){
             callback(false, "IP already counted")
         }else{
+            //Now save the vote document
             var tempVote={
                 ip:ip,
                 votes:data
@@ -80,26 +88,12 @@ var enterData = function(ip, data, callback){
             newVote.save(function (err) {if (err) console.log ('Error on save!')});
             callback(true, false);
         }
-    })
-
-    // if (!module.exports.ipCounted(ip)){
-    //     db.set('data.' + ip, data).write();
-    //     callback(true, false);
-    // } else {
-    //     // callback(success, err)
-    //     callback(false, "IP already counted")
-    // }
+    });
 }
 
 var retrieveData = function(callback){
-    // // callback(err, data)
-    // try {
-    //     callback(false, db.get('data').value());
-    // } catch(ex){
-    //     callback(ex, '');
-    // }
 
-
+    //Retrieve all Vote documents in MongoDB
     Vote.find(function(err, docs){
         if (err){
             callback(err, '');
@@ -110,6 +104,8 @@ var retrieveData = function(callback){
 }
 
 var getTotalCount = function(callback){
+
+    //Retrieve length of MongoDB (a.k.a, # of Vote documents)
      Vote.find(function(err, docs){
         callback(docs.length);
     });

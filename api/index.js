@@ -11,6 +11,7 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 var db = require('../util/dbmanage')
 
 //These are the only valid categories for results retrieval.
+//Similar to the big object in root/index.js, this will become more dynamic
 const validCategories = ['artist','css','admin','friendliest','nonpony','techie',
                         'musician','page','forum','moment','hugger','oc','roleplayer',
                         'mentions','country', 'subpol', 'gender','nextsite','remarks'];
@@ -23,9 +24,7 @@ router.get("/results/:category", function(req, res){
                 //Construct key-value pairs of HOF Nominee and Number of votes
                 var results = {};
                 for (var obj of data) {
-                    // console.log(!obj.votes);
                     if (obj.get('votes.'+req.params.category)) {
-                        // if (obj.votes.hasOwnProperty(req.params.category)) {
                             var index = obj.votes[req.params.category];
                             results[index] = results[index]+1 || 1;
                     }
@@ -85,6 +84,8 @@ router.post("/votes", function(req, res){
 });
 
 //Speech retrieval
+//Speech data won't change much so let's just read it from
+//a JSON file.
 router.get('/speeches/:page/:category', function(req, res){
     fs.readFile('./speeches.json', function(err, data){
         if (err){
