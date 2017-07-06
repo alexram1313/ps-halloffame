@@ -1,4 +1,5 @@
-var mongoose = require ("mongoose");
+var mongoose = require ('mongoose');
+var crypto   = require('crypto');
 
 var uristring = 
   process.env.MONGODB_URI || 
@@ -59,11 +60,15 @@ var voteSchema = mongoose.Schema({
 var Vote = mongoose.model('Vote', voteSchema);
 
 
+function ipHash(ip){
+    return crypto.createHash('sha256').update(ip).digest('hex');
+}
+
 //IPs will be in the "ip" property of a Vote document
 //Older votes may actually have a timestamp in place
 //due to legacy Google Forms counting.
 var ipCounted = function(ip, callback){
-    Vote.find({ip:ip}, function(err, docs){
+    Vote.find({ip:ipHash(ip)}, function(err, docs){
         if (docs.length){
             callback(true);
         }
@@ -81,7 +86,7 @@ var enterData = function(ip, data, callback){
         }else{
             //Now save the vote document
             var tempVote={
-                ip:ip,
+                ip:ipHash(ip),
                 votes:data
             }
             var newVote = new Vote(tempVote);
