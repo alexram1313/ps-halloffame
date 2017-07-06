@@ -25,19 +25,24 @@ process.on('uncaughtException', function (err) {
 app.use('/api', api);
 
 app.get('/', function (req, res) {
-  var title = "";
-  res.render('pages/home', {
-    "title": title,
-    "total":db.getTotalCount()
-  });
+    db.getTotalCount(function(count){
+        var title = "";
+        res.render('pages/home', {
+            "title": title,
+            "total":count
+        });
+    });
+  
 });
 
 app.get('/about', function (req, res) {
-  var title = "About";
-  res.render('pages/about', {
-    "title": title,
-    "total":db.getTotalCount()
-  });
+    db.getTotalCount(function(count){
+        var title = "About";
+        res.render('pages/about', {
+            "title": title,
+            "total":count()
+        });
+    });
 });
 
 app.get('/vote', function (req, res) {

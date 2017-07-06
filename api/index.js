@@ -22,9 +22,9 @@ router.get("/results/:category", function(req, res){
             if (!err){
                 //Construct key-value pairs of HOF Nominee and Number of votes
                 var results = {};
-                for (var key in data) {
-                    if (data[key].hasOwnProperty(req.params.category)) {
-                        var index = data[key][req.params.category];
+                for (var obj of data) {
+                    if (obj.votes.hasOwnProperty(req.params.category)) {
+                        var index = obj.votes[req.params.category];
                         results[index] = results[index]+1 || 1;
                     }
                 }
