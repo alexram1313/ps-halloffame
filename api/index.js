@@ -24,11 +24,10 @@ router.get("/results/:category", function(req, res){
                 var results = {};
                 for (var obj of data) {
                     // console.log(!obj.votes);
-                    if (!obj.get('votes')){
-                        if (obj.votes.hasOwnProperty(req.params.category)) {
+                    if (obj.get('votes.'+req.params.category)) {
+                        // if (obj.votes.hasOwnProperty(req.params.category)) {
                             var index = obj.votes[req.params.category];
                             results[index] = results[index]+1 || 1;
-                        }
                     }
                 }
                 res.status(200).json({results:results});
