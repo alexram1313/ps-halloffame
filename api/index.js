@@ -24,6 +24,7 @@ router.get("/results/:category", function(req, res){
                 var results = {};
                 for (var obj of data) {
                     if (obj.hasOwnProperty('votes')){
+                        console.log(obj);
                         if (obj.votes.hasOwnProperty(req.params.category)) {
                             var index = obj.votes[req.params.category];
                             results[index] = results[index]+1 || 1;
