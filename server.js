@@ -40,7 +40,7 @@ app.get('/about', function (req, res) {
         var title = "About";
         res.render('pages/about', {
             "title": title,
-            "total":count()
+            "total":count
         });
     });
 });
