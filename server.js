@@ -20,16 +20,16 @@ process.on('uncaughtException', function (err) {
 });
 
 
-//import existing JSON data into MongoDB
-var fs = require('fs');
-fs.readFile('./results.json', function(err, data){
-    var results = JSON.parse(data).data;
-    for (var key in results){
-        if (results.hasOwnProperty(key)){
-            db.enterData(key, results[key], function(derp){});
-        }
-    }
-});
+// //import existing JSON data into MongoDB
+// var fs = require('fs');
+// fs.readFile('./results.json', function(err, data){
+//     var results = JSON.parse(data).data;
+//     for (var key in results){
+//         if (results.hasOwnProperty(key)){
+//             db.enterData(key, results[key], function(derp){});
+//         }
+//     }
+// });
 
 //Express routing
 
