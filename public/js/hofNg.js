@@ -3,7 +3,8 @@ demoApp.controller('hofCtrl', function($scope, $http) {
 
     $scope.setCurrCode = function(code){
         $scope.currCode = code;
-        $scope.updateCurrentData()
+        $scope.updateCurrentData();
+        $scope.getSpeeches();
     };
 
     $scope.updateCurrentData = function(){
@@ -53,6 +54,20 @@ demoApp.controller('hofCtrl', function($scope, $http) {
                 // console.log(myPieChart.data);
             }, function error (data) {
                 console.log('Error:', data);
+            });
+    };
+
+    $scope.getSpeeches = function(){
+        $scope.speeches = [];
+
+        $http.get('/api/speeches/results/'+$scope.currCode)
+            .then(function success(data){
+                $scope.speeches = data.data.speeches;
+            },
+            
+            function error(data){
+                $scope.speeches = [];
+                console.log(data);
             });
     };
 

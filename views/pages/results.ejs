@@ -7,6 +7,7 @@
             <h2>Category: <%= optTitle %></h2>
             <p><%= optDesc %></p>
             <h2>Winner: <span data-ng-bind="winner"></span></h2>
+            <p data-ng-hide="!speeches.length"><a href="#acceptanceSpeeches">Click here for the acceptance speeches.</a></p>
         </div>
         <div class='col-sm-4' style="text-align:right;">
             <div class="imgContainer" style="float:right;" data-ng-repeat="win in winners">
@@ -55,6 +56,16 @@
         </div>
     </div>
     <p>Congratulations to all the nominees!</p>
+    
+    <div id="acceptanceSpeeches" data-ng-hide="!speeches.length">
+        <h3>Acceptance Speech(es)</h3>
+        <ul>
+            <li data-ng-repeat="speech in speeches">
+                <h4 data-ng-bind="speech.user"></h4>
+                <p data-ng-bind="speech.speech"></p>
+            </li>
+        </ul>
+    </div>
 
 </div>
 

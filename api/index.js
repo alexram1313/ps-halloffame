@@ -1,5 +1,6 @@
 var app = require('express');
 var bodyParser = require('body-parser')
+var fs = require('fs');
 const router = app.Router({ mergeParams: true });
 
 router.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -78,6 +79,31 @@ router.post("/votes", function(req, res){
         } else {
             res.status(400).json({err: err});
         }
+    });
+});
+
+//Speech retrieval
+router.get('/speeches/:page/:category', function(req, res){
+    fs.readFile('./speeches.json', function(err, data){
+        if (err){
+            res.status(500).json({err:err});
+        }
+        
+        var result = {speeches:[]};
+        var speeches = JSON.parse(data);
+        if (speeches.hasOwnProperty(req.params.page) &&
+            speeches[req.params.page].hasOwnProperty(req.params.category)){
+            var catSpeeches = speeches[req.params.page][req.params.category];
+            for (var user in catSpeeches){
+                if (catSpeeches.hasOwnProperty(user)){
+                    result.speeches.push({
+                        user:user,
+                        speech:catSpeeches[user]
+                    });
+                }
+            }
+        }
+        res.status(200).json(result);
     });
 });
 
