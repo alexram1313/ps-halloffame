@@ -31,6 +31,7 @@ app.get('/', function (req, res) {
     db.getTotalCount(function(count){
         res.render('pages/home', {
             "siteName":siteName,
+            "parents":cats.getAll(),
             "title": '',
             "total":count
         });
@@ -43,6 +44,7 @@ app.get('/about', function (req, res) {
         var title = "About";
         res.render('pages/about', {
             "siteName":siteName,
+            "parents":cats.getAll(),
             "title": title,
             "total":count
         });
@@ -53,6 +55,7 @@ app.get('/vote', function (req, res) {
   var title = "Vote";
   res.render('pages/vote', {
     "siteName":siteName,
+    "parents":cats.getAll(),
     "title": title
   });
 });
@@ -68,6 +71,7 @@ app.get('/:parent/:option', function(req, res){
                 var title = catInfo.name + " Results";
                 res.render('pages/'+catInfo.display, {
                     "siteName":siteName,
+                    "parents":cats.getAll(),
                     "title": title,
                     "option":req.params.option,
                     "parent":req.params.parent,
@@ -79,6 +83,7 @@ app.get('/:parent/:option', function(req, res){
                 var title = "Error 500 - Internal Server Error";
                 res.status(500).render('pages/stdpage', {
                     "siteName":siteName,
+                    "parents":cats.getAll(),
                     "title": title,
                     "content":"Please check the category display property."
                 });
@@ -89,6 +94,7 @@ app.get('/:parent/:option', function(req, res){
         var title = "Error 400 - Bad Request";
         res.status(400).render('pages/stdpage', {
             "siteName":siteName,
+            "parents":cats.getAll(),
             "title": title,
             "content":"Please check the URL for a valid HOF results option."
         }); 

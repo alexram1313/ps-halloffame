@@ -20,7 +20,12 @@ var getCategoryInfo = function (parent, category){
     }
 };
 
+var getAll = function(){
+    return categories.parents;
+}
+
 module.exports = {
     checkCategories:checkCategories,
-    getCategoryInfo:getCategoryInfo
+    getCategoryInfo:getCategoryInfo,
+    getAll:getAll
 }

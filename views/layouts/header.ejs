@@ -37,7 +37,23 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
                     <li><a href="/vote">Vote</a></li>
-                    <li class="dropdown">
+
+                    <% for(var i=0; i<parents.length; ++i) { %>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= parents[i].shortName %><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <% for(var j=0; j<parents[i].categories.length; ++j) {%>
+                                    <li>
+                                        <a href="/<%= parents[i].code %>/<%= parents[i].categories[j].code %>">
+                                            <%= parents[i].categories[j].shortName %>
+                                        </a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </li>
+                    <% } %>
+
+                    <!--<li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">HOF Results<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/results/artist">Best Artist</a></li>
@@ -65,7 +81,7 @@
                             <li><a href="/demo/gender">Gender</a></li>
                             <li><a href="/demo/nextsite">After PonySquare</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li><a href="/about">About</a></li>
                 </ul>
             </div>
