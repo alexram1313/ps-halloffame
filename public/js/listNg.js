@@ -1,8 +1,9 @@
 var demoApp = angular.module('listApp', []);
 demoApp.controller('listCtrl', function($scope, $http) {
 
-    $scope.setCurrCode = function(code){
-        $scope.currCode = code;
+    $scope.setCurrCode = function(parent, code){
+        $scope.currParent = parent;
+        $scope.currCode   = code;
         $scope.updateCurrentData();
     };
 
@@ -10,13 +11,13 @@ demoApp.controller('listCtrl', function($scope, $http) {
         $scope.results = {};
         $scope.tabularResults = [];
 
-        $http.get('/api/results/'+$scope.currCode)
+        $http.get('/api/'+$scope.currParent+'/'+$scope.currCode)
             .then(function success (data) {
                 // console.log(data);
                 
                 //Set this scope variable
                 //then the view will create a list
-                //using ng-repeat
+                //using data-ng-repeat
                 $scope.results = data.data.results;
                 // console.log(myPieChart.data);
             }, function error (data) {

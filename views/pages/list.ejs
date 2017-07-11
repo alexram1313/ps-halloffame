@@ -1,6 +1,6 @@
 <% layout('../layouts/layout') %>
 
-<div ng-app="listApp" ng-controller="listCtrl" ng-init="setCurrCode('<%= option %>')">
+<div ng-app="listApp" ng-controller="listCtrl" ng-init="setCurrCode('<%= parent %>', '<%= option %>')">
 
     <p><%= optDesc %></p>
 
