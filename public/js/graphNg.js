@@ -1,5 +1,5 @@
-var demoApp = angular.module('demoApp', []);
-demoApp.controller('demoCtrl', function($scope, $http) {
+var demoApp = angular.module('graphApp', []);
+demoApp.controller('graphCtrl', function($scope, $http) {
 
     $scope.setCurrCode = function(code){
         $scope.currCode = code;
