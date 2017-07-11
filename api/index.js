@@ -2,13 +2,15 @@ var app = require('express');
 var bodyParser = require('body-parser')
 var fs = require('fs');
 const router = app.Router({ mergeParams: true });
+var db = require('../util/dbmanage');
+var categories = require('../util/categories');
 
 router.use( bodyParser.json() );       // to support JSON-encoded bodies
 router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-var db = require('../util/dbmanage')
+
 
 //These are the only valid categories for results retrieval.
 //Similar to the big object in root/index.js, this will become more dynamic
@@ -16,9 +18,11 @@ const validCategories = ['artist','css','admin','friendliest','nonpony','techie'
                         'musician','page','forum','moment','hugger','oc','roleplayer',
                         'mentions','country', 'subpol', 'gender','nextsite','remarks'];
 
-router.get("/results/:category", function(req, res){
+
+
+router.get("/:parent/:category", function(req, res){
     //Check if category is a valid one
-    if (validCategories.indexOf(req.params.category) != -1){
+    if (categories.checkCategories(req.params.parent, req.params.category)){
         db.retrieveData(function(err, data){
             if (!err){
                 //Construct key-value pairs of HOF Nominee and Number of votes
