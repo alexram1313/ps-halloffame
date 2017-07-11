@@ -22,8 +22,8 @@
                     "display":"winner"
                 },
                 {
-                    "name":"Best Admin",
-                    "shortName":"Best Admin of All-time",
+                    "shortName":"Best Admin",
+                    "name":"Best Admin of All-time",
                     "desc":"Being an admin of any kind is a tough job. This category recognizes the admin that maintained a positive relationship with the users as well as the values of PonySquare.",
                     "code":"admin",
                     "input":"text",
