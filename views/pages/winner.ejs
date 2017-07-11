@@ -1,6 +1,6 @@
 <% layout('../layouts/layout') %>
 
-<div ng-app="hofApp" ng-controller="hofCtrl" ng-init="setCurrCode('<%= option %>')">
+<div ng-app="winnerApp" ng-controller="winnerCtrl" ng-init="setCurrCode('<%= parent %>', '<%= option %>')">
 
     <div class="row">
         <div class='col-sm-8'>
@@ -68,4 +68,4 @@
 
 </div>
 
-<script src="/public/js/hofNg.js"></script>
+<script src="/public/js/winnerNg.js"></script>

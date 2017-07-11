@@ -1,8 +1,9 @@
-var demoApp = angular.module('hofApp', []);
-demoApp.controller('hofCtrl', function($scope, $http) {
+var demoApp = angular.module('winnerApp', []);
+demoApp.controller('winnerCtrl', function($scope, $http) {
 
-    $scope.setCurrCode = function(code){
-        $scope.currCode = code;
+    $scope.setCurrCode = function(parent, code){
+        $scope.currParent = parent;
+        $scope.currCode   = code;
         $scope.updateCurrentData();
         $scope.getSpeeches();
     };
@@ -11,7 +12,7 @@ demoApp.controller('hofCtrl', function($scope, $http) {
         $scope.results = {};
         $scope.tabularResults = [];
 
-        $http.get('/api/results/'+$scope.currCode)
+        $http.get('/api/'+$scope.currParent+'/'+$scope.currCode)
             .then(function success (data) {
                 // console.log(data);
                 $scope.results = data.data.results;
