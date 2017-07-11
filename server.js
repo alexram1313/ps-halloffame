@@ -52,8 +52,6 @@ app.get('/vote', function (req, res) {
   });
 });
 
-const pageTypes = ['winner', 'list', 'graph'];
-
 app.get('/:parent/:option', function(req, res){
     if (cats.checkCategories(req.params.parent, req.params.option)){
         var catInfo = cats.getCategoryInfo(req.params.parent, req.params.option);
@@ -61,19 +59,24 @@ app.get('/:parent/:option', function(req, res){
         var title = catInfo.name + " Results";
         var page;
 
-        if (pageTypes.indexOf(catInfo.display) != -1){
-            res.render('pages/'+catInfo.display, {
-                "title": title,
-                "option":req.params.option,
-                "optTitle":catInfo.name,
-                "optDesc":catInfo.desc || ''
-            });
-        }else{
-            var title = "Error 500 - Internal Server Error";
-            res.status(500).render('pages/stdpage', {
-                "title": title,
-                "content":"Please check the category display property."
-            });
+        switch (catInfo.display){
+            case "winner":
+            case "list":
+            case "graph":
+                res.render('pages/'+catInfo.display, {
+                    "title": title,
+                    "option":req.params.option,
+                    "optTitle":catInfo.name,
+                    "optDesc":catInfo.desc || ''
+                });
+                break;
+            default:
+                var title = "Error 500 - Internal Server Error";
+                res.status(500).render('pages/stdpage', {
+                    "title": title,
+                    "content":"Please check the category display property."
+                });
+                break;
         }
         
         
