@@ -1,8 +1,9 @@
 var demoApp = angular.module('graphApp', []);
 demoApp.controller('graphCtrl', function($scope, $http) {
 
-    $scope.setCurrCode = function(code){
-        $scope.currCode = code;
+    $scope.setCurrCode = function(parent, code){
+        $scope.currParent = parent;
+        $scope.currCode   = code;
         $scope.updateCurrentData()
     };
 
@@ -10,7 +11,7 @@ demoApp.controller('graphCtrl', function($scope, $http) {
         $scope.results = {};
         $scope.tabularResults = [];
 
-        $http.get('/api/demo/'+$scope.currCode)
+        $http.get('/api/'+$scope.currParent+'/'+$scope.currCode)
             .then(function success (data) {
                 // console.log(data);
                 $scope.results = data.data.results;

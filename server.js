@@ -70,6 +70,7 @@ app.get('/:parent/:option', function(req, res){
                     "siteName":siteName,
                     "title": title,
                     "option":req.params.option,
+                    "parent":req.params.parent,
                     "optTitle":catInfo.name,
                     "optDesc":catInfo.desc || ''
                 });
