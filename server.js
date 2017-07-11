@@ -79,7 +79,6 @@ app.get('/:parent/:option', function(req, res){
                 break;
         }
         
-        
     } else {
         var title = "Error 400 - Bad Request";
         res.status(400).render('pages/stdpage', {
