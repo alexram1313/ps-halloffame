@@ -55,14 +55,12 @@ app.get('/vote', function (req, res) {
 app.get('/:parent/:option', function(req, res){
     if (cats.checkCategories(req.params.parent, req.params.option)){
         var catInfo = cats.getCategoryInfo(req.params.parent, req.params.option);
-        
-        var title = catInfo.name + " Results";
-        var page;
 
         switch (catInfo.display){
             case "winner":
             case "list":
             case "graph":
+                var title = catInfo.name + " Results";
                 res.render('pages/'+catInfo.display, {
                     "title": title,
                     "option":req.params.option,
