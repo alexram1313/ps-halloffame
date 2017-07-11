@@ -45,9 +45,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="kvp in tabularResults | orderBy:'-n'">
-                            <td>{{ kvp.e }}</td>
-                            <td>{{ kvp.n }}</td>
+                        <tr data-ng-repeat="kvp in tabularResults | orderBy:'-n'">
+                            <td data-ng-bind="kvp.e"></td>
+                            <td data-ng-bind="kvp.n"></td>
                         </tr>
                     </tbody>
                 </table>
