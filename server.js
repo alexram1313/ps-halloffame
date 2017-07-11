@@ -52,6 +52,7 @@ app.get('/vote', function (req, res) {
   });
 });
 
+const pageTypes = ['winner', 'list', 'graph'];
 
 app.get('/:parent/:option', function(req, res){
     if (cats.checkCategories(req.params.parent, req.params.option)){
@@ -60,25 +61,21 @@ app.get('/:parent/:option', function(req, res){
         var title = catInfo.name + " Results";
         var page;
 
-        switch (catInfo.display){
-            case "winner":
-                page = 'pages/results';
-                break;
-            case "list":
-                page = 'pages/resultslist';
-                break;
-            case "graph":
-                page = 'pages/demo';
-                break;
-            default:
-                break;
+        if (pageTypes.indexOf(catInfo.display) != -1){
+            res.render('pages/'+catInfo.display, {
+                "title": title,
+                "option":req.params.option,
+                "optTitle":catInfo.name,
+                "optDesc":catInfo.desc || ''
+            });
+        }else{
+            var title = "Error 500 - Internal Server Error";
+            res.status(500).render('pages/stdpage', {
+                "title": title,
+                "content":"Please check the category display property."
+            });
         }
-        res.render(page, {
-            "title": title,
-            "option":req.params.option,
-            "optTitle":catInfo.name,
-            "optDesc":catInfo.desc || ''
-        });
+        
         
     } else {
         var title = "Error 400 - Bad Request";
@@ -88,45 +85,6 @@ app.get('/:parent/:option', function(req, res){
         }); 
     }
 });
-
-
-// app.get('/results/:option', function (req, res) {
-//     if (hofOptionTitles.hasOwnProperty(req.params.option)){
-//         var title = "Results";
-//         res.render(((req.params.option != 'remarks')&&(req.params.option != 'mentions')&&(req.params.option != 'moment'))?'pages/results':'pages/resultslist', {
-//             "title": title,
-//             "option":req.params.option,
-//             "optTitle":hofOptionTitles[req.params.option].title,
-//             "optDesc":hofOptionTitles[req.params.option].desc
-//         });
-//     }
-//     else{
-//        var title = "Error 400 - Bad Request";
-//         res.status(400).render('pages/stdpage', {
-//             "title": title,
-//             "content":"Please check the URL for a valid HOF results option."
-//         }); 
-//     }
-// });
-
-
-// app.get('/demo/:option', function (req, res) {
-//     if (demoOptionTitles.hasOwnProperty(req.params.option)){
-//         var title = "Demographics";
-//         res.render('pages/demo', {
-//             "title": title,
-//             "option":req.params.option,
-//             "optTitle":demoOptionTitles[req.params.option]
-//         });
-//     }
-//     else{
-//         var title = "Error 400 - Bad Request";
-//         res.status(400).render('pages/stdpage', {
-//             "title": title,
-//             "content":"Please check the URL for a valid demographics option."
-//         });
-//     }
-// });
 
 //Start server
 var server = app.listen(process.env.PORT || 8080, function () {
