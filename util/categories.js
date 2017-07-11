@@ -1,4 +1,4 @@
-const categories = require('./categories.json');
+const categories = require('../categories.json');
 
 var checkCategories = function (parent, category){
     var par = categories.parents.find( (p) => p.code == parent );
