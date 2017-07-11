@@ -77,6 +77,7 @@ app.get('/:parent/:option', function(req, res){
             default:
                 var title = "Error 500 - Internal Server Error";
                 res.status(500).render('pages/stdpage', {
+                    "siteName":siteName,
                     "title": title,
                     "content":"Please check the category display property."
                 });
