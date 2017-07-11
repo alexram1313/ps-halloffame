@@ -6,6 +6,9 @@ var api     = require('./api');
 var db      = require('./util/dbmanage');
 var cats    = require('./util/categories')
 
+//The name of the survey site
+//Change this to whatever you want.
+const siteName = "PonySquare Hall of Fame";
 
 //Housekeeping stuff
 app.engine('ejs', engine);
@@ -26,9 +29,9 @@ app.use('/api', api);
 
 app.get('/', function (req, res) {
     db.getTotalCount(function(count){
-        var title = "";
         res.render('pages/home', {
-            "title": title,
+            "siteName":siteName,
+            "title": '',
             "total":count
         });
     });
@@ -39,6 +42,7 @@ app.get('/about', function (req, res) {
     db.getTotalCount(function(count){
         var title = "About";
         res.render('pages/about', {
+            "siteName":siteName,
             "title": title,
             "total":count
         });
@@ -48,6 +52,7 @@ app.get('/about', function (req, res) {
 app.get('/vote', function (req, res) {
   var title = "Vote";
   res.render('pages/vote', {
+    "siteName":siteName,
     "title": title
   });
 });
@@ -62,6 +67,7 @@ app.get('/:parent/:option', function(req, res){
             case "graph":
                 var title = catInfo.name + " Results";
                 res.render('pages/'+catInfo.display, {
+                    "siteName":siteName,
                     "title": title,
                     "option":req.params.option,
                     "optTitle":catInfo.name,
@@ -80,6 +86,7 @@ app.get('/:parent/:option', function(req, res){
     } else {
         var title = "Error 400 - Bad Request";
         res.status(400).render('pages/stdpage', {
+            "siteName":siteName,
             "title": title,
             "content":"Please check the URL for a valid HOF results option."
         }); 
