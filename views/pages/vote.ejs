@@ -9,7 +9,7 @@
 <p>
     Your officially recorded answers may be slightly modified for consistency's sake. No actual votes will be changed.
 </p>
-<div data-ng-app="voteApp" data-ng-controller="voteApp" data-ng-init="loadCategories( <%- JSON.stringify(parents) %> )">
+<div data-ng-app="voteApp" data-ng-controller="voteApp" data-ng-init='loadCategories( <%- JSON.stringify(parents) %> )'>
     <form data-ng-hide="formHide">
         <div class="form-group" data-ng-repeat="cat in categories">
             <label for="{{cat.code}}" data-ng-bind="cat.name"></label>
