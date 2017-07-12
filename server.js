@@ -28,6 +28,7 @@ app.get('/', function (req, res) {
     db.getTotalCount(function(count){
         res.render('pages/home', {
             "siteName":info.name,
+            "author":info.author,
             "parents":cats.getAll(),
             "title": '',
             "total":count
@@ -41,6 +42,7 @@ app.get('/about', function (req, res) {
         var title = "About";
         res.render('pages/about', {
             "siteName":info.name,
+            "author":info.author,
             "parents":cats.getAll(),
             "title": title,
             "total":count
@@ -52,6 +54,7 @@ app.get('/vote', function (req, res) {
   var title = "Vote";
   res.render('pages/vote', {
     "siteName":info.name,
+    "author":info.author,
     "votePageHtml":info.votePageHtml,
     "parents":cats.getAll(),
     "title": title
@@ -69,6 +72,7 @@ app.get('/:parent/:option', function(req, res){
                 var title = catInfo.name + " Results";
                 res.render('pages/'+catInfo.display, {
                     "siteName":info.name,
+                    "author":info.author,
                     "parents":cats.getAll(),
                     "title": title,
                     "option":req.params.option,
@@ -81,6 +85,7 @@ app.get('/:parent/:option', function(req, res){
                 var title = "Error 500 - Internal Server Error";
                 res.status(500).render('pages/stdpage', {
                     "siteName":info.name,
+                    "author":info.author,
                     "parents":cats.getAll(),
                     "title": title,
                     "content":"Please check the category display property."
@@ -92,6 +97,7 @@ app.get('/:parent/:option', function(req, res){
         var title = "Error 400 - Bad Request";
         res.status(400).render('pages/stdpage', {
             "siteName":info.name,
+            "author":info.author,
             "parents":cats.getAll(),
             "title": title,
             "content":"Please check the URL for a valid HOF results option."
