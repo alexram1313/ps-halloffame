@@ -14,9 +14,9 @@
         <div class="form-group" data-ng-repeat="cat in categories">
             <label for="{{cat.code}}" data-ng-bind="cat.name"></label>
             <div ng-switch="cat.input">
-                <input data-ng-model="{{cat.code}}" type="text" class="form-control" id="{{cat.code}}" data-ng-switch-when="text" />
+                <input data-ng-model="catInputs[cat.code]" type="text" class="form-control" id="{{cat.code}}" data-ng-switch-when="text" />
                 
-                <select data-ng-model="{{cat.code}}" name="{{cat.code}}" class="form-control" id="{{cat.code}}" data-ng-switch-when="country">
+                <select data-ng-model="catInputs[cat.code]" name="{{cat.code}}" class="form-control" id="{{cat.code}}" data-ng-switch-when="country">
                     <option value="">- Select -</option>
                     <option value="United States">United States</option> 
                     <option value="United Kingdom">United Kingdom</option> 
@@ -264,7 +264,7 @@
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
 
-                <select data-ng-model="{{cat.code}}" name="{{cat.code}}" class="form-control" 
+                <select data-ng-model="catInputs[cat.code]" name="{{cat.code}}" class="form-control" 
                         id="{{cat.code}}" data-ng-switch-when="choice" 
                         data-ng-options="choice for choice in cat.choices track by choice">
                     <option value="">- Select -</option>

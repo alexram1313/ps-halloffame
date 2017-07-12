@@ -3,22 +3,21 @@ voteApp.controller('voteApp', function($scope, $http) {
     $scope.formHide = false;
     $scope.respMsg  = '';
 
-    // const categories = ['artist','css','admin','friendliest','nonpony','techie',
-    //                     'musician','page','forum','moment','hugger','oc','roleplayer',
-    //                     'mentions','country', 'subpol', 'gender','nextsite','remarks'];
-    
-    $scope.categories = []
+    $scope.categories = [];
+    $scope.catInputs  = {};
 
     $scope.loadCategories = function(cats){
         $scope.parents = cats;
         for(var i = 0; i<cats.length; ++i){
             for(var j = 0; j<cats[i].categories.length; ++j){
                 $scope.categories.push(cats[i].categories[j]);
+                $scope.catInputs[cats[i].categories[j].code] = '';
             }
         }
     };
 
     $scope.submitVote = function(){
+        console.log($scope.catInputs);
         //Prevent editing and give an initial messgae
         $scope.formHide = true;
         $scope.respMsg  = "Submitting vote..."
@@ -27,8 +26,8 @@ voteApp.controller('voteApp', function($scope, $http) {
         //using only non-empty entries
         var params = {entry:{}}
         for (var cat of $scope.categories){
-            if ($scope[cat.code] != ''){
-                params.entry[cat.code] = $scope[cat.code];
+            if ($scope.catInputs[cat.code] != ''){
+                params.entry[cat.code] = $scope.catInputs[cat.code];
             }
         }
 
