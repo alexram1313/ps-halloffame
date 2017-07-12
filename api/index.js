@@ -10,16 +10,6 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-
-
-//These are the only valid categories for results retrieval.
-//Similar to the big object in root/index.js, this will become more dynamic
-const validCategories = ['artist','css','admin','friendliest','nonpony','techie',
-                        'musician','page','forum','moment','hugger','oc','roleplayer',
-                        'mentions','country', 'subpol', 'gender','nextsite','remarks'];
-
-
-
 router.get("/:parent/:category", function(req, res){
     //Check if category is a valid one
     if (categories.checkCategories(req.params.parent, req.params.category)){

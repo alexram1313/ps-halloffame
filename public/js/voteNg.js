@@ -17,7 +17,6 @@ voteApp.controller('voteApp', function($scope, $http) {
     };
 
     $scope.submitVote = function(){
-        console.log($scope.catInputs);
         //Prevent editing and give an initial messgae
         $scope.formHide = true;
         $scope.respMsg  = "Submitting vote..."
@@ -35,7 +34,7 @@ voteApp.controller('voteApp', function($scope, $http) {
             .then(
             function success (data) {
                 $scope.respMsg = "Your vote has been cast! Thank you for maintaining PonySquare history!"
-                console.log(data);
+                // console.log(data);
             },
             function error(data) {
                 //400 is bad request which our back end will send in case of a vote rejection
