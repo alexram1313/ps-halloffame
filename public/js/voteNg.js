@@ -6,8 +6,9 @@ voteApp.controller('voteApp', function($scope, $http) {
     $scope.categories = [];
     $scope.catInputs  = {};
 
-    $scope.loadCategories = function(cats){
+    $scope.loadCategories = function(cats, allowDup){
         $scope.parents = cats;
+        $scope.allowDuplicateEntriesByIp = allowDup;
         for(var i = 0; i<cats.length; ++i){
             for(var j = 0; j<cats[i].categories.length; ++j){
                 $scope.categories.push(cats[i].categories[j]);

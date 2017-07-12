@@ -58,6 +58,7 @@ app.get('/vote', function (req, res) {
     "siteName":info.name,
     "author":info.author,
     "votePageHtml":info.votePageHtml,
+    "allowDuplicateEntriesByIp":info.allowDuplicateEntriesByIp,
     "parents":cats.getAll(),
     "title": title
   });

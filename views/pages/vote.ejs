@@ -2,7 +2,8 @@
 
 <%- votePageHtml %>
 
-<div data-ng-app="voteApp" data-ng-controller="voteApp" data-ng-init='loadCategories( <%- JSON.stringify(parents) %> )'>
+<div data-ng-app="voteApp" data-ng-controller="voteApp" 
+    data-ng-init='loadCategories( <%- JSON.stringify(parents) %>, <%- allowDuplicateEntriesByIp %>)'>
     <form data-ng-hide="formHide">
         <div class="form-group" data-ng-repeat="cat in categories">
             <label for="{{cat.code}}" data-ng-bind="cat.name"></label>
@@ -266,9 +267,9 @@
             </div>
         </div>
         <div class="checkbox">
-            <label><input data-ng-model="approve" type="checkbox"><span style="color:red;">*</span>I consent to give my IP Address hash for the sole purpose of preventing duplicate entries.</label>
+            <label><input data-ng-if="allowDuplicateEntriesByIp" data-ng-model="approve" type="checkbox"><span style="color:red;">*</span>I consent to give my IP Address hash for the sole purpose of preventing duplicate entries.</label>
         </div>
-        <button type="submit" data-ng-disabled="!approve" class="btn btn-default" data-ng-click="submitVote();">Submit HOF Votes</button>
+        <button type="submit" data-ng-disabled="!(allowDuplicateEntriesByIp||approve)" class="btn btn-default" data-ng-click="submitVote();">Submit HOF Votes</button>
     </form>
     <hr data-ng-hide="!formHide" />
     <div id="respMsg" data-ng-hide="!formHide" data-ng-bind="respMsg">

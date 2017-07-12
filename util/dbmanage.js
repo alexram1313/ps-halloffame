@@ -1,8 +1,8 @@
 var mongoose = require ('mongoose');
+const info   = require ('../siteinfo.js')
 
 var uristring = 
-  process.env.MONGODB_URI || 
-  'mongodb://localhost/HelloMongoose';
+  process.env.MONGODB_URI || info.mongoDbUri;
 
 
 // Makes connection asynchronously.  Mongoose will queue up database
@@ -80,20 +80,28 @@ var ipCounted = function(ip, callback){
 
 //First check the IP, then write to the database
 var enterData = function(ip, data, callback){
-    ipCounted(ip, function(counted){
-        if (counted){
-            callback(false, "IP already counted")
-        }else{
-            //Now save the vote document
-            var tempVote={
-                ip:ipHash(ip),
-                votes:data
-            }
-            var newVote = new Vote(tempVote);
-            newVote.save(function (err) {if (err) console.log ('Error on save!')});
-            callback(true, false);
+    var save = function(){
+        //Now save the vote document
+        var tempVote={
+            ip:ipHash(ip),
+            votes:data
         }
-    });
+        var newVote = new Vote(tempVote);
+        newVote.save(function (err) {if (err) console.log ('Error on save!')});
+        callback(true, false);
+    }
+
+    if (!info.allowDuplicateEntriesByIp){
+        ipCounted(ip, function(counted){
+            if (counted){
+                callback(false, "IP already counted")
+            }else{
+                save();
+            }
+        });
+    } else {
+        save();
+    }
 }
 
 var retrieveData = function(callback){

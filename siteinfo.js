@@ -1,7 +1,7 @@
 module.exports = {
     name: "PonySquare Hall of Fame",
     author: "Comp (alexram1313)",
-    mongoDbUrl:"mongodb://localhost/MongoDB", //Important if can't use process.env.MONGODB_URI
+    mongoDbUri:"mongodb://localhost/MongoDB", //Important if can't use process.env.MONGODB_URI
     votePageHtml:
         "<p>\
             It's the end of the world! However, now's your chance to recognize some of the users that made PonySquare worthwhile to you!\
@@ -19,5 +19,6 @@ module.exports = {
         <p>\
             It is obvious that many have strived to make the PonySquare experience worthwhile by developing their character, fine-tuning their creative writing skills, starting hug wars, and by reaching out to others. While the closure of a website would simply cause all of such hard work and dedication to vanish, the goal of this survey is to recognize and preserve the efforts of the most notable, most influential, and most honorable users of all-time. The original survey was conducted on Google Forms and counted a total of 59 official entries voting on the categories listed in the \"HOF Results\" menu. Spam and unconstructive entries have been filtered, while legitimate entries have been slightly edited for counting and display purposes. Witty remarks have been preserved in “Misc. Remarks” The data was originally processed in R and is now processed in real-time in Javascript.\
         </p>",
-    aboutPageShowVoteCount:true
+    aboutPageShowVoteCount:true,
+    allowDuplicateEntriesByIp:false
 }
