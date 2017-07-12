@@ -1,5 +1,4 @@
 var mongoose = require ('mongoose');
-var crypto   = require('crypto');
 
 var uristring = 
   process.env.MONGODB_URI || 
@@ -62,7 +61,7 @@ var Vote = mongoose.model('Vote', voteSchema);
 
 function ipHash(ip){
     console.log(ip);
-    return crypto.createHash('sha256').update(ip).digest('hex');
+    return require('crypto').createHash('').update(ip).digest('hex');
 }
 
 //IPs will be in the "ip" property of a Vote document
