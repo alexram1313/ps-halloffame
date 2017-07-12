@@ -264,9 +264,10 @@
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
 
-                <select data-ng-model="cat.code" name="{{cat.code}}" class="form-control" id="{{cat.code}}" data-ng-switch-when="choice">
+                <select data-ng-model="cat.code" name="{{cat.code}}" class="form-control" 
+                        id="{{cat.code}}" data-ng-switch-when="choice" 
+                        data-ng-options="choice for choice in cat.choices track by choice">
                     <option value="">- Select -</option>
-                    <option data-ng-repeat="choice in cat.choices" value="{{choice}}" data-ng-bind="choice"></option>
                     <!--<option value="Canterlot Avenue">Canterlot Avenue</option>
                     <option value="Equestria EverAfter">Equestria EverAfter</option>
                     <option value="PonyCrush">PonyCrush</option>
