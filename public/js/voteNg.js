@@ -1,14 +1,18 @@
 var voteApp = angular.module('voteApp', []);
 voteApp.controller('voteApp', function($scope, $http) {
+
     $scope.formHide = false;
     $scope.respMsg  = '';
 
     $scope.categories = [];
     $scope.catInputs  = {};
+    $scope.approve = false;
 
     $scope.loadCategories = function(cats, allowDup){
         $scope.parents = cats;
         $scope.allowDuplicateEntriesByIp = allowDup;
+        $scope.approve = $scope.allowDuplicateEntriesByIp;
+        
         for(var i = 0; i<cats.length; ++i){
             for(var j = 0; j<cats[i].categories.length; ++j){
                 $scope.categories.push(cats[i].categories[j]);
@@ -53,5 +57,9 @@ voteApp.controller('voteApp', function($scope, $http) {
             
             });
         
+    }
+
+    $scope.changeApproved = function(){
+        $scope.approve = !$scope.approve;
     }
 });
