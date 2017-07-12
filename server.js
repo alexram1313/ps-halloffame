@@ -5,7 +5,7 @@ var app     = express();
 var api     = require('./api');
 var db      = require('./util/dbmanage');
 var cats    = require('./util/categories');
-var info    = require('./siteinfo');
+const info  = require('./siteinfo');
 
 //Housekeeping stuff
 app.engine('ejs', engine);
@@ -45,6 +45,8 @@ app.get('/about', function (req, res) {
             "author":info.author,
             "parents":cats.getAll(),
             "title": title,
+            "aboutPageHtml":info.aboutPageHtml,
+            "aboutPageShowVoteCount":aboutPageShowVoteCount,
             "total":count
         });
     });
