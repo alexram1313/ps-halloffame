@@ -46,7 +46,7 @@ app.get('/about', function (req, res) {
             "parents":cats.getAll(),
             "title": title,
             "aboutPageHtml":info.aboutPageHtml,
-            "aboutPageShowVoteCount":aboutPageShowVoteCount,
+            "aboutPageShowVoteCount":info.aboutPageShowVoteCount,
             "total":count
         });
     });
