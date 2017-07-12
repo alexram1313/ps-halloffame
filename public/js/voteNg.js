@@ -3,10 +3,20 @@ voteApp.controller('voteApp', function($scope, $http) {
     $scope.formHide = false;
     $scope.respMsg  = '';
 
-    const categories = ['artist','css','admin','friendliest','nonpony','techie',
-                        'musician','page','forum','moment','hugger','oc','roleplayer',
-                        'mentions','country', 'subpol', 'gender','nextsite','remarks'];
+    // const categories = ['artist','css','admin','friendliest','nonpony','techie',
+    //                     'musician','page','forum','moment','hugger','oc','roleplayer',
+    //                     'mentions','country', 'subpol', 'gender','nextsite','remarks'];
     
+    $scope.categories = []
+
+    $scope.loadCategories = function(cats){
+        $scope.parents = cats;
+        for(var i = 0; i<cats.length; ++i){
+            for(var j = 0; j<cats[i].categories.length; ++j){
+                $scope.categories.push(cats[i].categories[j]);
+            }
+        }
+    };
 
     $scope.submitVote = function(){
         //Prevent editing and give an initial messgae
@@ -16,9 +26,9 @@ voteApp.controller('voteApp', function($scope, $http) {
         //Set up the POST entry parameter
         //using only non-empty entries
         var params = {entry:{}}
-        for (var cat of categories){
-            if ($scope[cat] != ''){
-                params.entry[cat] = $scope[cat];
+        for (var cat of $scope.categories){
+            if ($scope[cat.code] != ''){
+                params.entry[cat.code] = $scope[cat.code];
             }
         }
 
