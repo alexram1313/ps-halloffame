@@ -1,6 +1,6 @@
 <% layout('../layouts/layout') %>
 
-<%= votePageHtml %>
+<%- votePageHtml %>
 
 <div data-ng-app="voteApp" data-ng-controller="voteApp" data-ng-init='loadCategories( <%- JSON.stringify(parents) %> )'>
     <form data-ng-hide="formHide">
