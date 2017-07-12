@@ -4,11 +4,8 @@ var app     = express();
 
 var api     = require('./api');
 var db      = require('./util/dbmanage');
-var cats    = require('./util/categories')
-
-//The name of the survey site
-//Change this to whatever you want.
-const siteName = "PonySquare Hall of Fame";
+var cats    = require('./util/categories');
+var info    = require('./siteinfo');
 
 //Housekeeping stuff
 app.engine('ejs', engine);
@@ -30,7 +27,7 @@ app.use('/api', api);
 app.get('/', function (req, res) {
     db.getTotalCount(function(count){
         res.render('pages/home', {
-            "siteName":siteName,
+            "siteName":info.name,
             "parents":cats.getAll(),
             "title": '',
             "total":count
@@ -43,7 +40,7 @@ app.get('/about', function (req, res) {
     db.getTotalCount(function(count){
         var title = "About";
         res.render('pages/about', {
-            "siteName":siteName,
+            "siteName":info.name,
             "parents":cats.getAll(),
             "title": title,
             "total":count
@@ -54,7 +51,8 @@ app.get('/about', function (req, res) {
 app.get('/vote', function (req, res) {
   var title = "Vote";
   res.render('pages/vote', {
-    "siteName":siteName,
+    "siteName":info.name,
+    "votePageHtml":info.votePageHtml,
     "parents":cats.getAll(),
     "title": title
   });
@@ -70,7 +68,7 @@ app.get('/:parent/:option', function(req, res){
             case "graph":
                 var title = catInfo.name + " Results";
                 res.render('pages/'+catInfo.display, {
-                    "siteName":siteName,
+                    "siteName":info.name,
                     "parents":cats.getAll(),
                     "title": title,
                     "option":req.params.option,
@@ -82,7 +80,7 @@ app.get('/:parent/:option', function(req, res){
             default:
                 var title = "Error 500 - Internal Server Error";
                 res.status(500).render('pages/stdpage', {
-                    "siteName":siteName,
+                    "siteName":info.name,
                     "parents":cats.getAll(),
                     "title": title,
                     "content":"Please check the category display property."
@@ -93,7 +91,7 @@ app.get('/:parent/:option', function(req, res){
     } else {
         var title = "Error 400 - Bad Request";
         res.status(400).render('pages/stdpage', {
-            "siteName":siteName,
+            "siteName":info.name,
             "parents":cats.getAll(),
             "title": title,
             "content":"Please check the URL for a valid HOF results option."

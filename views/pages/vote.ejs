@@ -1,14 +1,7 @@
 <% layout('../layouts/layout') %>
 
-<p>
-    It's the end of the world! However, now's your chance to recognize some of the users that made PonySquare worthwhile to you! 
-</p>
-<p>
-    You don't need to answer every question -- just leave them blank -- and don't vote for yourself. 
-</p>
-<p>
-    Your officially recorded answers may be slightly modified for consistency's sake. No actual votes will be changed.
-</p>
+<%= votePageHtml %>
+
 <div data-ng-app="voteApp" data-ng-controller="voteApp" data-ng-init='loadCategories( <%- JSON.stringify(parents) %> )'>
     <form data-ng-hide="formHide">
         <div class="form-group" data-ng-repeat="cat in categories">
