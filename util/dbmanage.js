@@ -60,7 +60,7 @@ var Vote = mongoose.model('Vote', voteSchema);
 
 
 function ipHash(ip){
-    console.log(ip);
+    // console.log(ip);
     return require('crypto').createHash('sha256').update(ip).digest('hex');
 }
 
