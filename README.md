@@ -126,7 +126,7 @@ To post acceptance speeches to winner pages, edit speeches.json. The file should
 {
     "parentCode":{
         "categoryCode":{
-            "winner1Name":"Speech here"
+            "winner1Name":"Speech here",
             "winner2Name":"Speech here"
         }
     }
