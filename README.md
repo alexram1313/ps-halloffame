@@ -118,12 +118,7 @@ Initially developed to celebrate the users of a now defunct website, PS Hall of 
 ---
 
 # Example
-<<<<<<< HEAD
 For an example implementation, please see the [ps-specific branch](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) and https://ponysquarehall.herokuapp.com/.
-=======
-
-For an example implementation, please see the [ps-specific branch](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) and [https://ponysquarehall.herokuapp.com/].
->>>>>>> 9c756023e0e451587c866b1d61d50ee4a71433c1
 ---
 
 # License
