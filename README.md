@@ -1,4 +1,8 @@
 # PS Hall of Fame Survey Platform
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9c756023e0e451587c866b1d61d50ee4a71433c1
 Initially developed to celebrate the users of a now defunct website, PS Hall of Fame is a MEAN stack-based website that allows survey participants to vote on certain categories and view current results, in a simple and clean manner. Administrators set their own categories and may choose to either display a simple list of entries or a graph of the results with an optional winner.
 ---
 
@@ -118,7 +122,12 @@ Initially developed to celebrate the users of a now defunct website, PS Hall of 
 ---
 
 # Example
+<<<<<<< HEAD
 For an example implementation, please see the [ps-specific branch](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) and https://ponysquarehall.herokuapp.com/.
+=======
+
+For an example implementation, please see the [ps-specific branch](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) and [https://ponysquarehall.herokuapp.com/].
+>>>>>>> 9c756023e0e451587c866b1d61d50ee4a71433c1
 ---
 
 # License
