@@ -1,9 +1,9 @@
-#PS Hall of Fame Survey Platform
+# PS Hall of Fame Survey Platform
 
 Initially developed to celebrate the users of a now defunct website, PS Hall of Fame is a MEAN stack-based website that allows survey participants to vote on certain categories and view current results, in a simple and clean manner. Administrators set their own categories and may choose to either display a simple list of entries or a graph of the results with an optional winner.
 ---
 
-#Install
+# Install
 1. Clone the Git repository.
     `git clone https://github.com/alexram1313/ps-halloffame.git`
 2. Go through the setup procedure to follow.
@@ -13,7 +13,7 @@ Initially developed to celebrate the users of a now defunct website, PS Hall of 
     `npm start`
 ---
 
-#Setup
+# Setup
 1. Setup MongoDB on your server
 2. Edit siteinfo.js to your liking.
     By default, the file should read:
@@ -103,24 +103,25 @@ Initially developed to celebrate the users of a now defunct website, PS Hall of 
 
     Parents will contain individual categories. Their shortNames will be displayed in the navigation bar with their child categories as dropdown items.
 
-    -`parents`: (Array) A collection of all parents
-    -`name`: (String) The objects full name
-    -`shortName`: (String) An abbreviated version of name
-    -`code`: (String) A valid URL code for the object
-    -`categories`: (Array) A collection containing a parent's child categories
+    - `parents`: (Array) A collection of all parents
+    - `name`: (String) The objects full name
+    - `shortName`: (String) An abbreviated version of name
+    - `code`: (String) A valid URL code for the object
+    - `categories`: (Array) A collection containing a parent's child categories
 
-    -`desc`: (String) A child category's description
-    -`input`: (String | text, country, choice) The input type of the category. `text` will allow for text input. `country` will display a dropdown menu of countries. `choice` will display a dropdown menu of choices.
-    -`choices`: (Array|Only use if input is choice) A collection of all choice strings.
-    -`display`: (String | winner, graph, list) Type of results page to use for category. `list` will list all entries. `graph` will display a pie chart for all entries. `winner` will display a graph page and will also display a winner.
+    - `desc`: (String) A child category's description
+    - `input`: (String | text, country, choice) The input type of the category. `text` will allow for text input. `country` will display a dropdown menu of countries. `choice` will display a dropdown menu of choices.
+    - `choices`: (Array|Only use if input is choice) A collection of all choice strings.
+    - `display`: (String | winner, graph, list) Type of results page to use for category. `list` will list all entries. `graph` will display a pie chart for all entries. `winner` will display a graph page and will also display a winner.
 
 4. Customize the homepage at /views/pages/home.ejs. Feel free to use Bootstrap classes and the EJS variable `parents`, representing the parent categories.
 5. Put images of possible winners into /public/images. The filename should completely match the name of the winner and should be in png format.
 ---
 
-#Example
+# Example
+
 For an example implementation, please see the [ps-specific branch](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) and [https://ponysquarehall.herokuapp.com/].
 ---
 
-#License
+# License
 PS Hall of Fame is licensed under the [GNU General Public License v3.0](../blob/master/LICENSE). Please see the terms of the license.
