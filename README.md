@@ -119,6 +119,26 @@ Initially developed to celebrate the users of a now defunct website, PS Hall of 
 5. Put images of possible winners into /public/images. The filename should completely match the name of the winner and should be in png format. For example, if the winner is "Foo Bar" then the image should be named "Foo Bar.png"
 ---
 
+# Acceptance Speeches
+To post acceptance speeches to winner pages, edit speeches.json. The file should follow the folowing form:
+
+```javascript
+{
+    "parentCode":{
+        "categoryCode":{
+            "winner1Name":"Speech here"
+            "winner2Name":"Speech here"
+        }
+    }
+}
+```
+
+It is an object where the keys are the parent codes which correspond to another object. This nested object contains category codes associated with another object whose keys of winner names correspond to a speech.
+
+Speeches are optional. It is not required to add a key if a speech does not exist.
+
+---
+
 # Example 
 For an example implementation, please see the [ps-specific branch](https://github.com/alexram1313/ps-halloffame/tree/ps-specific) and https://ponysquarehall.herokuapp.com/.
 
