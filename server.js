@@ -45,8 +45,8 @@ app.get('/about', function (req, res) {
             "author":info.author,
             "parents":cats.getAll(),
             "title": title,
-            "aboutPageHtml":info.aboutPageHtml,
-            "aboutPageShowVoteCount":info.aboutPageShowVoteCount,
+            "aboutPageHtml":info.aboutPageHtml||'',
+            "aboutPageShowVoteCount":info.aboutPageShowVoteCount||true,
             "total":count
         });
     });
@@ -57,8 +57,8 @@ app.get('/vote', function (req, res) {
   res.render('pages/vote', {
     "siteName":info.name,
     "author":info.author,
-    "votePageHtml":info.votePageHtml,
-    "allowDuplicateEntriesByIp":info.allowDuplicateEntriesByIp,
+    "votePageHtml":info.votePageHtml||'',
+    "allowDuplicateEntriesByIp":info.allowDuplicateEntriesByIp||false,
     "parents":cats.getAll(),
     "title": title
   });
