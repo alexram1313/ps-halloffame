@@ -120,7 +120,7 @@ Initially developed to celebrate the users of a now defunct website, PS Hall of 
 ---
 
 # Example 
-For an example implementation, please see the [ps-specific branch](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) and https://ponysquarehall.herokuapp.com/.
+For an example implementation, please see the [ps-specific branch](https://github.com/alexram1313/ps-halloffame/tree/ps-specific) and https://ponysquarehall.herokuapp.com/.
 
 ---
 
