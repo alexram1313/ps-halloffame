@@ -6,7 +6,7 @@ Initially developed to celebrate the users of a now defunct website, PS Hall of 
 
 # Install
 1. Clone the Git repository.
-    `git clone https://github.com/alexram1313/ps-halloffame.git`
+    `git clone https://github.com/alexram1313/ps-halloffame`
 2. Go through the setup procedure to follow.
 3. Run the application using:
     `node server.js`
